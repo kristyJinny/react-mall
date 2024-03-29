@@ -6,22 +6,24 @@ import {
   Routes,
 } from "react-router-dom";
 
-import { Navbar } from './component/Navbar';
 import ProductAll from './page/ProductAll';
 import Login from './page/Login';
 import ProductDetail from './page/ProductDetail';
 import { useEffect, useState } from 'react';
 import PrivateRoute from './route/PrivateRoute';
+import Navbar from './component/Navbar';
+
 
 
 function App() {
   const[authenticate, setAuthenticate] = useState(false); // true 면 로그인 됨, false 이면 로드인 안됨
-  useEffect(()=>{
-    console.log("authenticate", authenticate)
-  }, [authenticate]) // authenticate 값이 바뀔 때 마다
+  // authenticate 값이 바뀔 때 마다
+  // useEffect(()=>{
+  //   console.log("authenticate", authenticate)
+  // }, [authenticate]) 
   return (
     <>
-      <Navbar />
+      <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate} />
       <Routes>
         <Route path="/" element={<ProductAll />} />
         <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>} />

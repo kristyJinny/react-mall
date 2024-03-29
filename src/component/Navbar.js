@@ -1,12 +1,11 @@
-import React from 'react'
+import React, {useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { faUser, faBars } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-// import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { Link } from "react-router-dom";
 
-
-export const Navbar = () => {
+const Navbar =({ authenticate, setAuthenticate }) => {
   const menuList = [
     "여성",
     "Divided",
@@ -18,15 +17,28 @@ export const Navbar = () => {
     "지속가능성",
   ];
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   const goToLogin=()=> {
     navigate("/login")
   };
+  const goToLogout = () => {
+    if (window.confirm('로그아웃 하시겠습니까?')) {
+      setAuthenticate(false);
+      navigator('/');
+  }
+};
+
+
   const search = (event) => {
     // console.log("key press")
     if(event.key === "Enter") {
       // 1. 입력한 검색어를 읽어와서
       let keyword = event.target.value;
-      console.log("keyword", keyword)
+      // console.log("keyword", keyword)
       // console.log("we clicked this key", event.key);
 
       // 2. url 변경
@@ -34,23 +46,31 @@ export const Navbar = () => {
 
     }
   }
-
+  // 모바일 메뉴
+  // let [width, setWidth] = useState(0);
   return (
     <div className="nav-container">
       <div className="nav-header">
-        <div className="login-button" onClick={goToLogin}>
+        <div className="login-button" onClick={authenticate ? goToLogout : goToLogin}>
           <FontAwesomeIcon icon={faUser} />
-          <div>로그인</div>
+          <div>{authenticate ? "로그아웃" : "로그인"}</div>
+        </div>
+        {/* 햄버거 메뉴 아이콘 */}
+        <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
+          <FontAwesomeIcon icon={faBars} />
         </div>
       </div>
 
-      <div className="nav-logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/H%26M-Logo.svg" alt="" />
+      <div className={`nav-logo ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
+        <Link to="/">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/H%26M-Logo.svg" alt="" />
+        </Link>
       </div>
-      <div className="nav-menu-area">
+      {/* 모바일 메뉴 영역 */}
+      <div className={`nav-menu-area ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
         <ul className="menu-list">
-          {menuList.map((menu)=> (
-            <li>{menu}</li>
+          {menuList.map((menu, index) => (
+            <li key={index}>{menu}</li>
           ))}
         </ul>
         <div className="search-box">
@@ -62,3 +82,4 @@ export const Navbar = () => {
     </div>
   )
 }
+export default Navbar;

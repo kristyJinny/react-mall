@@ -113,3 +113,33 @@ ul, li {margin:0; padding:0; list-style:none;}
   display: flex;
   
 }
+
+/* Navbar 컴포넌트의 CSS 파일 또는 스타일 코드에 추가 */
+
+/* 모바일 화면에서 숨겨진 요소 */
+.nav-menu-area {
+  display: block;
+}
+
+.nav-logo {
+  display: block;
+}
+
+/* 화면이 768px 이하일 때 모바일 메뉴가 보이게 함 */
+@media (max-width: 768px) {
+  .nav-menu-area {
+    display: none;
+  }
+
+  .nav-logo {
+    display: none;
+  }
+
+  .mobile-menu-open .nav-menu-area {
+    display: block;
+  }
+
+  .mobile-menu-open .nav-logo {
+    display: block;
+  }
+}
