@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faBars,faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
@@ -57,9 +57,9 @@ const Navbar =({ authenticate, setAuthenticate }) => {
           <div>{authenticate ? "로그아웃" : "로그인"}</div>
         </div>
         {/* 햄버거 메뉴 아이콘 */}
-        <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
+        <button type="button" className="mobile-menu-icon" onClick={toggleMobileMenu}>
           <FontAwesomeIcon icon={faBars} />
-        </div>
+        </button> 
       </div>
 
       <div className={`nav-logo ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
@@ -70,8 +70,13 @@ const Navbar =({ authenticate, setAuthenticate }) => {
       {/* 모바일 메뉴 영역 */}
       <div className={`nav-menu-area ${isMobileMenuOpen ? 'mobile-menu-open' : ''}`}>
         <ul className="menu-list">
+          <button onClick={toggleMobileMenu} className="btn-close">
+            {/* <FontAwesomeIcon icon={faXmark} /> */}
+          </button>
           {menuList.map((menu, index) => (
-            <li key={index}>{menu}</li>
+            <li>
+              <Link href="#" key={index}>{menu}</Link>
+            </li>
           ))}
         </ul>
         <div className="search-box">

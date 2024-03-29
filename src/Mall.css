@@ -2,7 +2,19 @@
 body{
   font-family: sans-serif;
 }
-
+button {
+  background: transparent;
+  border: 0;
+}
+.menu-list li a {
+  color: #000;
+  margin: 0;
+  text-decoration: none;
+}
+.menu-list li a:hover {
+  font-weight: bold;
+  color: red;
+}
 /* reseat */
 ul, li {margin:0; padding:0; list-style:none;}
 
@@ -117,18 +129,67 @@ ul, li {margin:0; padding:0; list-style:none;}
 
 /* Navbar 컴포넌트의 CSS 파일 또는 스타일 코드에 추가 */
 
+.mobile-menu-icon,
+.btn-close {
+  display: none;
+
+}
 
 /* 화면이 768px 이하일 때 모바일 메뉴가 보이게 함 */
 @media (max-width: 768px) {
+  .nav-header {
+    justify-content: space-between;
+  }
+  .login-button {
+    order: 2
+  }
+  .mobile-menu-icon {
+    display:block;
+    background: transparent;
+    border: 0;
+  }
+  .mobile-menu-icon svg {
+    width: 20px;
+    height: 20px;
+  }
   .nav-menu-area {
     display: none;
   }
 
-  .mobile-menu-open.nav-menu-area {
+  .mobile-menu-open.nav-menu-area,
+  .mobile-menu-open .btn-close  {
     display: block;
   }
-
+  .mobile-menu-open .btn-close {
+    border-radius: 50%;
+    border: 1px solid red;
+    padding: 10px;
+    background-color: #e71212;
+  }
   .mobile-menu-open.nav-menu-area .nav-logo {
     display: block;
+  }
+  .search-box {
+    display: none;
+  }
+  .nav-menu-area {
+    position: fixed;
+    width: 400px;
+    height: 100vh;
+    left: 0;
+    z-index: 10;
+    top: 0;
+    background: #fff0f0;
+
+    padding: 100px 20px 40px;
+
+  }
+  .nav-menu-area .menu-list {
+    flex-direction: column;
+    background: #fff0f0;
+    justify-content: flex-start;
+    gap: 30px;
+    font-weight: bold;
+    font-size: 20px;
   }
 }
