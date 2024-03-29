@@ -18,6 +18,7 @@ const Navbar =({ authenticate, setAuthenticate }) => {
   ];
   const navigate = useNavigate();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
