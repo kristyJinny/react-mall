@@ -25,9 +25,9 @@ const ProductDetail = () => {
         <Col xs={12} md={6} className="product-detail-img">
           <img src={product?.img} alt="" />
         </Col>
-        <Col xs={12} md={6}>
-          <div className="product-info">{product?.title}</div>
-            <div className="product-info">₩ {product?.price}</div>
+        <Col xs={12} md={6} className="product-detail-info">
+          <div className="product-title">{product?.title}</div>
+            <div className="product-price">₩ {product?.price}</div>
             <div className="choice">
               {product?.choice ? "Conscious choice" : ""}
             </div>

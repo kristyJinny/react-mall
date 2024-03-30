@@ -2,6 +2,9 @@
 body{
   font-family: sans-serif;
 }
+img {
+  width: 100%;
+}
 button {
   background: transparent;
   border: 0;
@@ -126,7 +129,22 @@ ul, li {margin:0; padding:0; list-style:none;}
   display: flex;
   
 }
+.product-detail-info > * {
 
+}
+.product-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.product-price {
+  font-size: 22px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.choice {
+  font-style:italic;
+  
+}
 /* Navbar 컴포넌트의 CSS 파일 또는 스타일 코드에 추가 */
 
 .mobile-menu-icon,
@@ -191,5 +209,14 @@ ul, li {margin:0; padding:0; list-style:none;}
     gap: 30px;
     font-weight: bold;
     font-size: 20px;
+  }
+  .product-detail-info.col-12 {
+    margin-top: 10px;
+  }
+  .nav-container {
+    padding-bottom: 20px;
+  }
+  .nav-logo {
+    margin-top: 20px;
   }
 }
