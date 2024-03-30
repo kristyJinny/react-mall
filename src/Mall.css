@@ -188,7 +188,7 @@ ul, li {margin:0; padding:0; list-style:none;}
     display: block;
   }
   .search-box {
-    display: none;
+    /* display: none; */
   }
   .nav-menu-area {
     position: fixed;
