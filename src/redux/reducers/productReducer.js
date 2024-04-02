@@ -7,8 +7,8 @@ function productReducer(state = initialState, action) {
   switch (type) {
     case "GET_PRODUCT_SUCCESS":
       return { ...state, productList: payload.data };
-    // case "GET_SINGLE_PRODUCT_SUCCESS":
-    //   return { ...state, selectedItem: payload.data };
+    case "GET_SINGLE_PRODUCT_SUCCESS":
+      return { ...state, selectedItem: payload.data };
     default:
       return { ...state };
   }
