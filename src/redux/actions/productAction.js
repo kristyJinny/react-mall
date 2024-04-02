@@ -1,4 +1,5 @@
 // getProducts 함수를 미들웨어로 옮겨주기~
+// import { productActions } from "../reducers/productReducer";
 
 function getProducts(searchQuery) {
   // 미들웨어는 함수를 리턴 함~
@@ -10,6 +11,7 @@ function getProducts(searchQuery) {
     // console.log(data);  이 값을 리듀셔로 전달하기
     // 위에서 전달 받은 dispatch 값을 여기에서 사용
     dispatch({ type: "GET_PRODUCT_SUCCESS", payload: { data } });
+    // dispatch(productActions.getAllProducts({ data }));
   };
 }
 

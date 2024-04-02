@@ -1,5 +1,6 @@
 let initialState = {
   productList: [],
+  selectedItem: null,
 };
 
 function productReducer(state = initialState, action) {
