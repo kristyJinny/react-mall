@@ -36,7 +36,7 @@ const ProductAll = () => {
   return (
     <Container className="product-list-container">
       <Row>
-        {productList.map((item) => {
+        {productList?.map((item) => {
           return (
             <Col md={3} sm={12}>
               <ProductCard item={item} />
