@@ -1,40 +1,40 @@
-
-import './Mall.css';
+import "./Mall.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Route,
-  Routes,
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-import ProductAll from './page/ProductAll';
-import Login from './page/Login';
-import ProductDetail from './page/ProductDetail';
-import { useEffect, useState } from 'react';
-import PrivateRoute from './route/PrivateRoute';
-import Navbar from './component/Navbar';
-
-
+import ProductAll from "./page/ProductAll";
+import Login from "./page/Login";
+import ProductDetail from "./page/ProductDetail";
+import { useEffect, useState } from "react";
+import PrivateRoute from "./route/PrivateRoute";
+import Navbar from "./component/Navbar";
 
 function App() {
-  const[authenticate, setAuthenticate] = useState(false); // true 면 로그인 됨, false 이면 로드인 안됨
+  const [authenticate, setAuthenticate] = useState(false); // true 면 로그인 됨, false 이면 로드인 안됨
   // authenticate 값이 바뀔 때 마다
   // useEffect(()=>{
   //   console.log("authenticate", authenticate)
-  // }, [authenticate]) 
+  // }, [authenticate])
   return (
     <>
-      <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate} />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<ProductAll />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/product/:id" element={<PrivateRoute />} />
+      </Routes>
+
+      {/* <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate} />
       <Routes>
         <Route path="/" element={<ProductAll />} />
         <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>} />
-        <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate} />} /> {/* 3번 */}
-      </Routes>
+        <Route path="/product/:id" element={<PrivateRoute authenticate={authenticate} />} />
+      </Routes> */}
     </>
   );
 }
 
 export default App;
-
 
 /*
   [ 홈페이지 만들기 - Flow   ]

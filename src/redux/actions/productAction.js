@@ -1,5 +1,5 @@
 // getProducts 함수를 미들웨어로 옮겨주기~
-// import { productActions } from "../reducers/productReducer";
+import { productActions } from "../reducers/productReducer";
 
 function getProducts(searchQuery) {
   // 미들웨어는 함수를 리턴 함~
@@ -14,4 +14,12 @@ function getProducts(searchQuery) {
   };
 }
 
-export const productAction = { getProducts };
+function getProductDetail(id) {
+  return async (dispatch) => {
+    let url = `https://my-json-server.typicode.com/kristyJinny/react-mallproducts/${id}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    dispatch({ type: "GET_PRODUCT_DETAIL_SUCCESS", payload: { data } });
+  };
+}
+export const productAction = { getProducts, getProductDetail };

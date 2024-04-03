@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { productAction } from "../redux/actions/productAction";
 
 const ProductDetail = () => {
-  const [product, setProduct] = useState(null);
   const { id } = useParams();
-  // const dispatch = useDispatch();
 
+  const product = useSelector((state) => state.product.selectedItem);
+  const dispatch = useDispatch();
   const getProductDetail = async () => {
-    let url = `https://my-json-server.typicode.com/kristyJinny/react-mall/products/${id}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    // console.log(data);
-    setProduct(data);
+    dispatch(productAction.getProductDetail(id));
   };
+
+  // const [product, setProduct] = useState(null);
+  // const getProductDetail = async () => {
+  //   let url = `https://my-json-server.typicode.com/kristyJinny/react-mall/products/${id}`;
+  //   let response = await fetch(url);
+  //   let data = await response.json();
+  //   console.log(data);
+  //   setProduct(data);
+  // };
+
   useEffect(() => {
     getProductDetail();
   }, []);
