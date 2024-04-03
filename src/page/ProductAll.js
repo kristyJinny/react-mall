@@ -3,7 +3,7 @@ import ProductCard from "../component/ProductCard";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { productAction } from "../redux/actions/productAction";
+import { fetchProducts } from "../redux/reducers/productSlice";
 
 const ProductAll = () => {
   const productList = useSelector((state) => state.product.productList);
@@ -15,9 +15,10 @@ const ProductAll = () => {
   const getProducts = () => {
     // searchQuery 정보는 ProductAll 에 있음, searchQuery 어떻게 미들웨오로 전달 할까?
     let searchQuery = query.get("q") || "";
+    dispatch(fetchProducts(searchQuery));
 
     // 이제는 여기서, 미들웨어 함수를 불러줘야 함 // searchQuery 정보는 매개변수로 전달~
-    dispatch(productAction.getProducts(searchQuery));
+    // dispatch(productAction.getProducts(searchQuery));
 
     // 미들웨어 함수 사용 안 헀을 떄,
     // let url = `https://my-json-server.typicode.com/kristyJinny/react-mall/products?q=${searchQuery}`;

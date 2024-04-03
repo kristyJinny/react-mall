@@ -3,15 +3,20 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productAction } from "../redux/actions/productAction";
+import { getItem } from "../redux/reducers/productSlice";
 
 const ProductDetail = () => {
   const { id } = useParams();
-
   const product = useSelector((state) => state.product.selectedItem);
   const dispatch = useDispatch();
-  const getProductDetail = async () => {
-    dispatch(productAction.getProductDetail(id));
+
+  const getProductDetail = () => {
+    dispatch(getItem(id));
   };
+
+  // const getProductDetail = async () => {
+  //   dispatch(productAction.getProductDetail(id));
+  // };
 
   // const [product, setProduct] = useState(null);
   // const getProductDetail = async () => {

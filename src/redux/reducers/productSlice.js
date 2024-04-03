@@ -7,11 +7,25 @@ let initialState = {
   error: null,
 };
 
-const getProducts = createAsyncThunk(
+export const fetchProducts = createAsyncThunk(
   "product/fetchAll",
   async (searchQuery, thunkApi) => {
     try {
       let url = `https://my-json-server.typicode.com/kristyJinny/react-mall/products?q=${searchQuery}`;
+      let response = await fetch(url);
+      return await response.json();
+    } catch (error) {
+      // 강제로 값을 보내고 싶을 때
+      thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getItem = createAsyncThunk(
+  "product/fetchOne",
+  async (id, thunkApi) => {
+    try {
+      let url = `https://my-json-server.typicode.com/kristyJinny/react-mall/products/${id}`;
       let response = await fetch(url);
       return await response.json();
     } catch (error) {
@@ -38,17 +52,30 @@ const productSlice = createSlice({
   extraReducers: (builder) => {
     // 데이터 오는 중
     builder
-      .addCase(getProducts.pending, (state) => {
+      .addCase(fetchProducts.pending, (state) => {
         state.isLoading = true; // 로딩스피너 시작
       })
       // 데이터 성공
-      .addCase(getProducts.fulfilled, (state, action) => {
-        state.isLoading = false;
+      .addCase(fetchProducts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.productList = action.payload;
       })
       // 데이터 실패
-      .addCase(getProducts.rejected, (state, action) => {
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
+    builder
+      .addCase(getItem.pending, (state) => {
+        state.isLoading = true; // 로딩스피너 시작
+      })
+      // 데이터 성공
+      .addCase(getItem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.productList = action.payload;
+      })
+      // 데이터 실패
+      .addCase(getItem.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -69,7 +96,7 @@ const productSlice = createSlice({
   },
 });
 */
-console.log("pppp", productSlice);
+// console.log("pppp", productSlice);
 
 export const productActions = productSlice.actions;
 export default productSlice.reducer;
