@@ -72,7 +72,7 @@ const productSlice = createSlice({
       // 데이터 성공
       .addCase(getItem.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.productList = action.payload;
+        state.selectedItem = action.payload;
       })
       // 데이터 실패
       .addCase(getItem.rejected, (state, action) => {
